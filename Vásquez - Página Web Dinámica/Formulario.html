@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+    
+    <head>
+        <title>Formulario a CV Dinámico</title>
+        <link rel="stylesheet" type="text/css" href="EstilosFORM.css">
+        <meta charset="UTF-8">
+    </head>
+    
+    <body>
+        <h1>FORMULARIO A CV DINÁMICO</h1>
+        <h2>Desarrollo Basado en Plataformas</h2>
+        <h2>Por: Diego Fernando Vasquez Torres</h2>
+        <form action="Submit.php" method="post" id="cvForm">
+            
+            <div class="form-group">
+                <label>Nombre y Apellidos:</label>
+                <input type="text" name="name">
+            </div>
+
+            <div class="form-group">
+                <label>Fecha de Nacimiento:</label>
+                <input type="date" name="dob">
+            </div>
+
+            <div class="form-group" id="formacion">
+                <label>Formación:</label>
+                <input type="text" name="formacion">
+                <button type="button" onclick="addField('formacion','newFormacionFields[]')">Agregar Estudios Realizados</button>
+            </div>
+
+            <div class="form-group" id="Exp_laboral">
+                <label>Experiencia Laboral(Trabajos realizados):</label>
+                <input type="text" name="exp_laboral">
+                <button type="button" onclick="addField('Exp_laboral','newELaboralFields[]')">Agregar Trabajos</button>
+            </div>
+ 
+            <div class="form-group" id="Contacto">
+                <label>Contacto:</label>
+                <input type="text" name="contact">
+                <button type="button" onclick="addField('Contacto','newContactFields[]')">Agregar otro contacto</button>
+            </div>
+
+            <div class="form-group" id="Nacionalidad">
+                <label>Nacionalidad:</label>
+                <select name="nationality">
+                    <option value="Peru">Perú</option>
+                    <option value="Mexico">México</option>
+                    <option value="Argentina">Argentina</option>
+                    <option value="Colombia">Colombia</option>
+                    <option value="Chile">Chile</option>
+                    <option value="Ecuador">Ecuador</option>
+                </select>
+                <button type="button" onclick="addField('Nacionalidad','newNacionalidadFields[]')">Agregar Nacionalidad</button>
+            </div>
+            <div class="form-group" id="languages">
+                <label>Idiomas:</label>
+                <select name="languages[]" multiple>
+                    <option value="Español">Español</option>
+                    <option value="Inglés">Inglés</option>
+                    <option value="Francés">Francés</option>
+                    <option value="Portugués">Portugués</option>
+                    <option value="Chino">Chino</option>
+                    <option value="Alemán">Alemán</option>
+                </select>
+                <button type="button" onclick="addField('languages','newIdiomasFields[]')">Agregar Idioma</button>
+            </div>            
+            <div class="form-group">
+                <label>Nivel de ingles:</label>
+                <input type="radio" name="english_level" value="Básico"> Basico
+                <input type="radio" name="english_level" value="Intermedio"> Intermedio
+                <input type="radio" name="english_level" value="Avanzado"> Avanzado
+                <input type="radio" name="english_level" value="Fluido"> Fluido
+            </div>
+            <div class="form-group" id="Lenguajes">
+                <label>Lenguajes de programacion:</label>
+                <select name="programming_languages[]" multiple>
+                    <option value="Python">Python</option>
+                    <option value="Java">Java</option>
+                    <option value="C#">C#</option>
+                    <option value="JavaScript">JavaScript</option>
+                    <option value="C++">C++</option>
+                </select>
+                <button type="button" onclick="addField('Lenguajes','newLdePFields[]')">Agregar Lenguaje de Programación</button>
+            </div>
+            <div class="form-group" id="skills">
+                <label>Aptitudes:</label>
+                <input list="skills" name="skill">
+                <datalist id="skills">
+                    <option value="Liderazgo">
+                    <option value="Trabajo en equipo">
+                    <option value="Resolución de problemas">
+                    <option value="Creatividad">
+                </datalist>
+                <button type="button" onclick="addField('skills','newAptitudesFields[]')">Agregar Aptitud</button>
+            </div>
+            
+            <div class="form-group" id="skills1">
+            <label>Habilidades:</label>
+            <input type="checkbox" name="abilities[]" value="Resolucion de problemas">Resolucion de problemas
+            <input type="checkbox" name="abilities[]" value="Comunicacion Efectiva">Comunicacion Efectiva
+            <input type="checkbox" name="abilities[]" value="Adaptabilidad">Adaptabilidad
+            <input type="checkbox" name="abilities[]" value="Trabajo en equipo">Trabajo en equipo
+            <input type="checkbox" name="abilities[]" value="Gestión de tiempo">Gestion de tiempo<br>
+            <button type="button" onclick="addField('skills1','newHabilidadesFields[]')">Agregar Habilidad</button>
+        </div>
+
+        <div class="form-group">
+            <label>Perfil:</label>
+            <textarea name="profile"></textarea>
+        </div>
+        <div id="dynamicFields"></div>
+        <div class="form-group">
+            <input type="submit">
+        </div>
+    </form>
+    <script src="Script.js"></script>
+</body>
+</html>
