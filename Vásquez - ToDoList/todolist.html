@@ -1,0 +1,71 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+  <meta charset="utf-8" />
+  <title>DBP</title>
+  <link rel="stylesheet" type="text/css" href="style.css">
+</head>
+
+
+<body>
+  <p><b>DESARROLLO BASADO EN PLATAFORMAS - TO DO LIST</b></p>
+  <p>Presentado por: Diego Fernando Vásquez Torres</p>
+  <h1>Tasks</h1>
+  <form id="new-task">
+    <input id="task" autocomplete="off" autofocus placeholder="New Task" type="text">
+    <input type="submit">
+  </form>
+  <button id="complete-all">Complete All</button>
+  <ol id="tasks">
+  </ol>
+
+  <script>
+    document.addEventListener('DOMContentLoaded', () => {
+      //para actualizar el estado de completado de la tarea
+      const updateTaskStatus = (li, checkbox) => {
+        if (checkbox.checked) {
+          li.classList.add('completed');
+        } else {
+          li.classList.remove('completed');
+        }
+      };
+
+      //eliminar una tarea
+      const deleteTask = (li) => {
+        li.remove();
+      };
+
+      //para el formulario de nueva tarea - estilo manejador
+      document.querySelector('#new-task').onsubmit = () => {
+        const li = document.createElement('li');
+        const checkbox = document.createElement('input');
+        checkbox.type = 'checkbox';
+        checkbox.onchange = () => updateTaskStatus(li, checkbox); //tachar tarea
+
+        const text = document.createTextNode(document.querySelector('#task').value);
+        const deleteButton = document.createElement('button');
+        deleteButton.textContent = 'X';
+        deleteButton.onclick = () => deleteTask(li); //eliminar la tarea
+
+        li.appendChild(checkbox);
+        li.appendChild(text);
+        li.appendChild(deleteButton);
+
+        document.querySelector('#tasks').append(li);
+        document.querySelector('#task').value = '';
+
+        return false;
+      };
+
+      //para el botón de completar todas las tareas - estilo manejador
+      document.querySelector('#complete-all').onclick = () => {
+        document.querySelectorAll('#tasks li').forEach(li => {
+          const checkbox = li.querySelector('input[type=checkbox]');
+          checkbox.checked = true;
+          updateTaskStatus(li, checkbox);
+        });
+      };
+    });
+  </script>
+</body>
+</html>
